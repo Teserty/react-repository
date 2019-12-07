@@ -9,7 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-const token = "cdb3e1fd18914ac3ba08d43fcb8a2d404d077729"; 
+const token = ""; 
 const httpLink = {
   uri: 'https://api.github.com/graphql',
   headers: {
