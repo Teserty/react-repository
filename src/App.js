@@ -10,10 +10,10 @@ const App = (props) => {
         return ( 
             <BrowserRouter>
                 <Switch >
-                    <Route exact path = "/" component={ListWithSearch}/>
-                    <Route exact path="/user/:login/" component={FullUserInformation}/>
-                    <Route exact path="/user/:login/:name" component={FullRepository}/>
-                    <Route path="/user/" component={UserPage}/>
+                    <Route exact path = "react-repository/" component={ListWithSearch}/>
+                    <Route exact path="react-repository/user/:login/" component={FullUserInformation}/>
+                    <Route exact path="react-repository/user/:login/:name" component={FullRepository}/>
+                    <Route path="react-repository/user/" component={UserPage}/>
                 </Switch> 
             </BrowserRouter>
         );

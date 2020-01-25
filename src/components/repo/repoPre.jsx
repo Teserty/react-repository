@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {ListItemText, ListItemAvatar, Avatar, ListItem} from '@material-ui/core';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { Link } from 'react-router-dom'
 const PreviewRepository = ({name, totalCount, login, id, viewerHasStarred})=>{
     const add_star = gql`
         mutation{
