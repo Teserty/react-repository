@@ -9,7 +9,7 @@ import { store } from '../store/configureStore'
 import { Provider } from 'react-redux'
 const InitialComponent = (props)=>{
     let t_token;
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState(localStorage.getItem('token'));
     const httpLink = {
         uri: 'https://api.github.com/graphql',
         headers: {
@@ -20,11 +20,16 @@ const InitialComponent = (props)=>{
         link: new HttpLink(httpLink),
         cache: new InMemoryCache()
     });
-    if(token === ""){
+    const saveToken = () =>{
+        setToken(t_token);
+        console.log(t_token)
+        localStorage.setItem('token', t_token);
+    }
+    if(localStorage.getItem('token') === null){
         return(
             <div>
                 <TextField id="outlined-basic" label="Outlined" variant="outlined" value={t_token} onChange={(event)=> {t_token=event.target.value}}/>
-                <Button variant="contained" onClick={()=>{setToken(t_token)}}>Accept Token</Button>
+                <Button variant="contained" onClick={()=>{saveToken()}}>Accept Token</Button>
             </div>
         )
     }else{

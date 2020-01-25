@@ -33,9 +33,8 @@ const UserList = ({name})=>{
         list = listOfData.map((element, key)=> {
             return(  <ListItem key={key}>
                                 <PreviewUserInformation  login={element.login} name={element.name} avatarUrl={element.avatarUrl}/>
-                                <Link to={`/user/${element.login}`}>More...</Link>
+                                <Link to={`/user/${element.login}/`}>More...</Link>
                                 <Divider variant="fullWidth"/>
-                                
                     </ListItem>
             )
         })

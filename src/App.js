@@ -3,14 +3,16 @@ import './App.css';
 import UserPage from './components/user/loginedUser'
 import ListWithSearch from './components/ListWithSearch'
 import { connect } from 'react-redux'
-import OverFullUserInformation from './components/user/FullUserInformation'
+import FullUserInformation from './components/user/FullUserInformation'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import FullRepository from "./components/repo/repoFull"
 const App = (props) => {
         return ( 
-            <BrowserRouter >
+            <BrowserRouter>
                 <Switch >
                     <Route exact path = "/" component={ListWithSearch}/>
-                    <Route path="/user/:login" component={OverFullUserInformation}/>
+                    <Route exact path="/user/:login/" component={FullUserInformation}/>
+                    <Route exact path="/user/:login/:name" component={FullRepository}/>
                     <Route path="/user/" component={UserPage}/>
                 </Switch> 
             </BrowserRouter>

@@ -4,9 +4,10 @@ import Progress from "../Loading";
 import { Container, Avatar, List, ListItem } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
 const FullUserInformation = (props)=>{
+    console.log(props.match.params.login)  
     const query = gql`
     query{
-        user(login: "${props.login}") {
+        user(login: "${props.match.params.login}") {
           login
           avatarUrl
           createdAt
@@ -45,6 +46,7 @@ const FullUserInformation = (props)=>{
     let content = "";
     if(!loading && !error){
         const info = data.user
+        console.log(data)
         content = 
         <React.Fragment>
             <Avatar src={info.avatarUrl}/>
@@ -66,5 +68,4 @@ const FullUserInformation = (props)=>{
         </Container>
     )
 }
-/*<ListItemText primary={data.viewer.repositories.totalCount} secondary="total repositories"/>*/
 export default FullUserInformation

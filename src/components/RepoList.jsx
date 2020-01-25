@@ -2,9 +2,9 @@ import React from "react"
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import Progress from "./Loading";
-import { Container, List } from '@material-ui/core';
+import { Container, List, Divider, ListItem } from '@material-ui/core';
 import PreviewRepository from "./repo/repoPre"
-
+import { Link } from 'react-router-dom'
 const RepoList = ({name})=>{
     const query = gql`
         query {
@@ -30,9 +30,12 @@ const RepoList = ({name})=>{
     if(!loading && !error){
         const listOfData = data.search.nodes
         list = listOfData.map((element, key)=> {
-            return <PreviewRepository key={key} name={element.name} id = {element.id} viewerHasStarred={element.viewerHasStarred}
-            totalCount = {element.stargazers.totalCount} login={element.owner.login} avatarUrl={element.avatarUrl}
-            />
+            return  <ListItem key={key}>
+                      <PreviewRepository name={element.name} id = {element.id} viewerHasStarred={element.viewerHasStarred}
+                      totalCount = {element.stargazers.totalCount} login={element.owner.login} avatarUrl={element.avatarUrl}/>
+                      <Link to={`/user/${element.owner.login}/${element.name}`}>More...</Link>
+                      <Divider variant="fullWidth"/>
+                   </ListItem>
         })
     }
     return(
