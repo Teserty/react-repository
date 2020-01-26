@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import Progress from "../Loading";
 import { Container, List, ListItem } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom'
 const FullRepository = (props)=>{
     const query = gql`
     query{
@@ -24,7 +25,7 @@ const FullRepository = (props)=>{
         content = 
         <React.Fragment>
             <List>
-                <ListItem>Owner Login: {props.match.params.login}</ListItem>
+                <ListItem>Owner Login:<Link to={`/user/${props.match.params.login}`}>{props.match.params.login}</Link></ListItem>
                 <ListItem>Description:{info.description}</ListItem>
                 <ListItem>Assignable Users: {info.assignableUsers.totalCount}</ListItem>
                 <ListItem>Fork Count: {info.forkCount}</ListItem>

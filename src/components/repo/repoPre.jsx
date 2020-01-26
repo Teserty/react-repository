@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ListItemText, ListItemAvatar, Avatar, ListItem} from '@material-ui/core';
+import {ListItemText, ListItemAvatar, Avatar, ListItem, List} from '@material-ui/core';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 const PreviewRepository = ({name, totalCount, login, id, viewerHasStarred})=>{
@@ -27,14 +27,12 @@ const PreviewRepository = ({name, totalCount, login, id, viewerHasStarred})=>{
     const [removeStar]= useMutation(remove_star)
     const [count, setCount] = useState(totalCount)
     return(
-        <ListItem>
+        <List>
             <ListItemText>{name}, {login}</ListItemText>
-            <ListItemAvatar>
-                {count}
-                {!viewerHasStarred && <Avatar src="./black-star.png" alt="Remy Sharp" onClick={()=>{addStar(); setCount(count+1)}}/>}
-                {viewerHasStarred && <Avatar src="./gold-star.png" alt="Remy Sharp" onClick={()=>{removeStar(); setCount(count+-1)}}/>}
-            </ListItemAvatar>
-        </ListItem>
+            <ListItem>{count}</ListItem>
+            {!viewerHasStarred && <ListItemAvatar><Avatar src="./black-star.png" alt="Remy Sharp" onClick={()=>{addStar(); setCount(count+1)}}/></ListItemAvatar>}
+            {viewerHasStarred && <ListItemAvatar><Avatar src="./gold-star.png" alt="Remy Sharp" onClick={()=>{removeStar(); setCount(count+-1)}}/></ListItemAvatar>}
+        </List>
     )
 }
 export default PreviewRepository

@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {TextField, Select, MenuItem, IconButton, Container } from '@material-ui/core';
+import {TextField, Select, MenuItem, Container } from '@material-ui/core';
 import RepoList from "./RepoList"
 import UserList from "./UserList"
 import { Link } from 'react-router-dom'
@@ -31,7 +31,6 @@ const ListWithSearch = (props)=>{
                     <em>Repos</em>
                 </MenuItem>
                 </Select>
-                <IconButton onClick={() => {}}>Search</IconButton>
             </Container>
             <Link to="/user/">Home...</Link>
             {list}

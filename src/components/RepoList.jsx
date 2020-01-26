@@ -13,7 +13,6 @@ const RepoList = ({name})=>{
             ... on Repository {
               name
               id
-              url
               viewerHasStarred
               stargazers{
                 totalCount
@@ -25,16 +24,19 @@ const RepoList = ({name})=>{
           }
         }
     }`
+    
     const {loading, error, data} = useQuery(query);
     let list = ''
+    
     if(!loading && !error){
         const listOfData = data.search.nodes
         list = listOfData.map((element, key)=> {
-            return  <ListItem key={key}>
-                      <PreviewRepository name={element.name} id = {element.id} viewerHasStarred={element.viewerHasStarred}
-                      totalCount = {element.stargazers.totalCount} login={element.owner.login} avatarUrl={element.avatarUrl}/>
-                      <Link to={`/user/${element.owner.login}/${element.name}`}>More...</Link>
-                      <Divider variant="fullWidth"/>
+            return  <ListItem key={key}><List>
+                      <ListItem><PreviewRepository name={element.name} id = {element.id} viewerHasStarred={element.viewerHasStarred}
+                      totalCount = {element.stargazers.totalCount} login={element.owner.login}/></ListItem>
+                      <ListItem><Link to={`/user/${element.owner.login}/${element.name}`}>More...</Link></ListItem>
+                      <ListItem><Divider variant="fullWidth"/></ListItem>
+                   </List>
                    </ListItem>
         })
     }
